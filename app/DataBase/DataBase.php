@@ -35,13 +35,26 @@ class DataBase{
         DB::insert('INSERT INTO Requester VALUES(?,?,?,?,?,?,?,?,?,?) ',
             [NULL,$requester->getfirstName(),$requester->getlastName(),$requester->getnid(),$requester->getcontactNo(),$requester->getaddress(),$requester->getdesignation(),$requester->getusername(),
             $requester->getpassword(),NULL]);
+        $this->addUser($requester);
 
     }
 
     public function addPhilanthropist($philanthropist){
-        DB::insert('INSERT INTO Philanthropist VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',
-            [NULL,$philanthropist->getfirstName(),$philanthropist->getlastName(),$philanthropist->getnid(),$philanthropist->getcontactNo(),$philanthropist->getdesignation(), $philanthropist->getoccupation(),$philanthropist->getplaceOfWork(),$philanthropist->getusername(),
+        DB::insert('INSERT INTO Philanthropist VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)',
+            [NULL,$philanthropist->getfirstName(),$philanthropist->getlastName(),$philanthropist->getnid(),$philanthropist->getcontactNo(),$philanthropist->getdesignation(), $philanthropist->getoccupation(),$philanthropist->getplaceOfWork(),$philanthropist->getcity(),$philanthropist->getusername(),
                 $philanthropist->getpassword(),NULL,NULL]);
+        $this->addUser($philanthropist);
+    }
+
+    public function addUser($user){
+        DB::insert('INSERT INTO User VALUES(?,?)',
+            [NULL,$user->getnid()]);
+
+    }
+
+    public function addItem($item){
+        DB::insert('INSERT INTO Item VALUES(?,?)',
+            [NULL,$item->getType()]);
     }
 
     public function addIssue($issue,$user){
@@ -61,56 +74,6 @@ class DataBase{
         ]);
 
     }
-    public function addStudent($student){
-        DB::insert('INSERT INTO Student VALUES(?,?,?,?,?)',
-            [$student->getID(),$student->getFirstName(),
-                $student->getLastName(),$student->getFaculty(),$student->getDepartment()]);
-    }
-
-    public function addResource($resource){
-        DB::insert('INSERT INTO Resource VALUES(?,?,?,?)',
-            [$resource->getID(),$resource->getName(),
-                $resource->getLocation(),$resource->getKeeperID()]);
-    }
-
-    public function addPracticeSchedule($practiceSchedule){
-        DB::insert('INSERT INTO PracticeSchedule VALUES(?,?,?,?,?,?)',
-            [$practiceSchedule->getSessionID(),$practiceSchedule->getSportName(),
-                $practiceSchedule->getResourceID(),$practiceSchedule->getDate(),
-                $practiceSchedule->getStartTime(),$practiceSchedule->getEndTime()]);
-    }
-
-    public function addAchievement($achievement){
-        DB::insert('INSERT INTO PracticeSchedule VALUES(?,?,?,?,?,?)',
-            [$achievement->getAchievementID(),$achievement->getContest(),
-                $achievement->getDate(),$achievement->getPlace(),
-                $achievement->getSportName(),$achievement->getDescription()]);
-        DB::insert('INSERT INTO Achieve VALUES(?,?))',
-            [$achievement->getStudentID(),$achievement->getAchievementID()]);
-    }
-
-    public function addEquipment($equipment){
-        DB::insert('INSERT INTO Equipment VALUES(?,?,?,?,?,?,?)',
-            [$equipment->getItemNo(),$equipment->getType(),
-                $equipment->getPurchaseDate(),$equipment->isAvailable(),
-                $equipment->getPurchasePrice(),$equipment->getCondition(),
-                $equipment->getSportName()]);
-    }
-
-    public function addBorrow($borrow){
-        DB::insert('INSERT INTO Borrow VALUES(?,?,?,?,?)',
-            [$borrow->getItemNo(),$borrow->getStudentID(),
-                $borrow->getStartDate(),$borrow->getEndDate(),
-                $borrow->isReturned()]);
-    }
-
-    public function addSport($sport){
-        DB::insert('INSERT INTO Sport VALUES(?)',[$sport->getSportName()]);
-        foreach($sport->getUtilizationList() as $uti){
-            DB::insert('INSERT INTO SportsResources VALUES(?,?,?)',
-                [$uti->getSportName(),$uti->getResourceID(),$uti->getUtilization()]);
-        }
-    }
 
     public function addAdmin($admin){
         DB::insert('INSERT INTO Admin VALUES(?)',[$admin->getID()]);
@@ -129,10 +92,6 @@ class DataBase{
         $this->addUser($coach);
     }
 
-    public function addUser($user){
-        DB::insert('INSERT INTO Users VALUES(?,?,?,?)',
-            [$user->getID(),$user->getName(),$user->getContactNo(),$user->getPassword()]);
-    }
 
     public function addEquipmentRequest($equipmentType,$studentID){
         DB::insert('INSERT INTO EquipmentRequest VALUES(?,?)',
