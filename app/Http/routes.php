@@ -11,17 +11,27 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'IndexController@login');
+
+Route::get('/j', 'IndexController@login');
+
+Route::get('addIssue', 'IndexController@addIssue');
+
+Route::get('leaderboard', 'LeaderBoardController@ldrview');
+
+Route::get('issues', 'IssuesController@issues');
+
+Route::post('sendIssues/{maploc}', array('as'=>'sendIss','uses'=>'addIssueController@addIssue'));
 
 Route::get('first', array('as'=>'first','uses'=>'MoraController@first'));
 
-Route::get('reg', array('as'=>'register','uses'=>'MoraController@addUser'));
+Route::get('reg', array('as'=>'register','uses'=>'IndexController@register'));
 
-Route::get('home', 'HomeController@index');
+Route::get('addIssue', 'IndexController@addIssue');
 
 Route::get('user', 'MoraController@seeUser');
 
-Route::get('login', 'MoraController@login');
+Route::get('/login', 'IndexController@login');
 
 Route::get('register', array('as'=>'registerForm','uses'=>'MoraController@register'));
 

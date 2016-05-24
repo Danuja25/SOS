@@ -12,12 +12,29 @@ namespace App\Domain;
 class Issue
 {
     private $title;
-    private $city;
+    private $location;
     private $description;
     private $maplocation;
     private $submitDate;
 
     /**
+     * @return mixed
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * @param mixed $location
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+    }
+
+
+        /**
      * @return mixed
      */
     public function getMaplocation()
@@ -65,21 +82,6 @@ class Issue
         $this->title = $title;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * @param mixed $city
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-    }
 
     /**
      * @return mixed

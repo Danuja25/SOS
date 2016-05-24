@@ -6,10 +6,16 @@
  * Time: 2:06 PM
  */
 
+
 namespace App\Http\Controllers;
+use app\DataBase\DataBase;
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
 
-class LeaderBoardController
+
+class LeaderBoardController extends Controller
 {
 
     public function getLeaderboard(){
@@ -17,4 +23,7 @@ class LeaderBoardController
         return $ldrpos;
     }
 
+    public function ldrview(){
+        return view('UserViews.leaderboard');
+    }
 }

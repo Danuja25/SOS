@@ -75,29 +75,18 @@ class DataBase{
 
     }
 
-    public function addAdmin($admin){
-        DB::insert('INSERT INTO Admin VALUES(?)',[$admin->getID()]);
-        $this->addUser($admin);
+    public function loadIssuesByDate(){
+        $issues = DB::select('SELECT Title,Submitter,Location,Description,MapLocation,SubmittedDate,No_of_votes FROM Issues ORDER BY SubmittedDate DESC LIMIT 25' );
+        return $issues;
     }
 
-    public function addKeeper($keeper){
-        DB::insert('INSERT INTO Keeper VALUES(?,?)',
-            [$keeper->getID(),$keeper->getResource()]);
-        $this->addUser($keeper);
-    }
-
-    public function addCoach($coach){
-        DB::insert('INSERT INTO Coach VALUES(?,?)',
-            [$coach->getID(),$coach->getResource()]);
-        $this->addUser($coach);
+    public function loadIssuesByVotes(){
+        $issues = DB::select('SELECT Title,Submitter,Location,Description,MapLocation,SubmittedDate,No_of_votes FROM Issues ORDER BY No_of_votes DESC LIMIT 25' );
+        return $issues;
     }
 
 
-    public function addEquipmentRequest($equipmentType,$studentID){
-        DB::insert('INSERT INTO EquipmentRequest VALUES(?,?)',
-            [$studentID,$equipmentType]);
 
-    }
     /*
      * Update data.............................................................................
      */

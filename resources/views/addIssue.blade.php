@@ -18,7 +18,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
     <script type="text/javascript" src="js/megamenu.js"></script>
     <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
-    <!-- Mega Menu -->
     <script
             src="http://maps.googleapis.com/maps/api/js">
     </script>
@@ -32,6 +31,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             var mapProp = {
                 center:myCenter,
                 zoom:15,
+                streetViewControl: false,
                 mapTypeId:google.maps.MapTypeId.ROADMAP
             };
 
@@ -69,6 +69,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
+    <!-- Mega Menu -->
 </head>
 <body>
 <!-- banner -->
@@ -95,12 +96,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="top-nav">
             <span class="menu"> </span>
             <ul class="navig megamenu skyblue">
-                <li><a href="location.html" class="scroll"><span> </span> Issues</a>
+                <li><a href="location.html" class="scroll"><span> </span> Find Locations</a>
                     <div class="megapanel">
                         <div class="na-left">
                             <ul class="grid-img-list">
-                                <li><a href="location.html">Current Issues </a></li> |
-                                <li><a href="addlocation.html">Solved Issues </a></li> |
+                                <li><a href="location.html">Find a Location  </a></li> |
+                                <li><a href="addlocation.html">Add a location </a></li> |
                                 <li><a href="location.html"> Review a location  </a></li> |
                                 <li><a href="location.html">Review a location</a></li>
                                 <div class="clearfix"> </div>
@@ -120,8 +121,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="clearfix"> </div>
                     </div>
                 </li>
-                <li><a href="404.html" class="scroll"> <span class="service"> </span>Philanthropists</a></li>
-                <li><a href="shop.html" class="scroll"><span class="mail"> </span> Leader board </a></li>
+                <li><a href="404.html" class="scroll"> <span class="service"> </span>Our Species</a></li>
+                <li><a href="shop.html" class="scroll"><span class="mail"> </span>Shop </a></li>
                 <div class="clearfix"></div>
             </ul>
             <script>
@@ -133,7 +134,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="head-right">
             <ul class="number">
-                <li><a href="login.html"><i class="roc"> </i>Log in</a></li>
+                <li><a href="login.html"><i class="roc"> </i>My Account</a></li>
                 <li><a href="register.html"><i class="phone"> </i>Sign Up</a></li>
                 <li><a href="contact.html"><i class="mail"> </i>Contact</a></li>
                 <div class="clearfix"> </div>
@@ -142,28 +143,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="clearfix"> </div>
     </div>
 </div>
-
-<div class="addlocation">
-    <div class="container">
-        <h3>Add New Issue</h3>
-
-
-        <div id="googleMap" style="width:1280px;height:720px;"></div>
-
-
-        <h5>Location Details</h5>
-        <div class="col-md-6">
-            <div class="booki1"><span>Title : </span><form><input type="text" placeholder="" required=""></form><div class="clearfix"> </div></div>
-            <div class="booki1"><span>Location : </span><form><input type="text" placeholder="" required="" height="5"></form><div class="clearfix"> </div></div>
-            <div class="booki1"><span>Description : </span><form><input type="text" placeholder="" required="" height="5"></form><div class="clearfix"> </div></div>
-            <a class = "b-home">Submit</a>
-
+<!-- contact -->
+<div class="container">
+    <div class="contact-content">
+        <div class="contact-info">
+            <h2>Add Issue</h2>
+            <div id="googleMap" style="width:1280px;height:720px;"></div>
+            <!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1609927.7974915467!2d144.41768979226285!3d-37.991357413515345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad646b5d2ba4df7%3A0x4045675218ccd90!2sMelbourne+VIC%2C+Australia!5e0!3m2!1sen!2sin!4v1430308946781" width="100%" height="450" frameborder="0" style="border:0"></iframe>-->
         </div>
 
-        <div class="clearfix"></div>
+        <div class="contact-details">
+            <form onsubmit="sendIssue()">
+                <input id="title" type="text" placeholder="Title" required/>
+                <input id="location" type="text" placeholder="Location" required/>
+                <textarea id="description" placeholder="Description"></textarea>
+                <input type="submit" value="Submit"/>
+            </form>
+        </div>
+
     </div>
 </div>
-<!-- 404 -->
+
+<script>
+
+    function sendIssue(){
+        var title = document.getElementById('title').value;
+        var location = document.getElementById('title').value;
+        var description = document.getElementById('title').value;
+
+
+
+    }
+</script>
+
+<!-- contact -->
 <div class="footer">
     <div class="container">
         <div class="col-md-2 abo-foo1">
@@ -214,10 +227,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="clearfix"></div>
         <div class="footer-bottom">
-            <p>Copyrights © 2015 Location All rights reserved.</p>
+            <p>Copyrights © 2015 Location All rights reserved | Template by <a href="http://w3layouts.com/">&nbsp; W3layouts</a></p>
         </div>
     </div>
 </div>
-
 </body>
 </html>

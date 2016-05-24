@@ -8,10 +8,21 @@
 
 namespace App\Http\Controllers;
 use app\DataBase\DataBase;
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
 
 class IndexController extends Controller
 {
+
+    public function addIssue(){
+        return view('addIssue');
+    }
+
+    public function issues(){
+        return view('UserViews.issues');
+    }
 
     public function login(){
         return view('projectViews.login');
