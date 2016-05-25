@@ -16,14 +16,14 @@ use Illuminate\Support\Facades\Input;
 
 class AddIssueController extends Controller
 {
-    public function addIssue(){
+    public function addIssue($title,$location,$description,$maploc){
         $database = DataBase::getInstance();
         $issue = new Issue();
         $requester = new Requester();
-        $issue->setTitle(Input::get('title'));
-        $issue->setLocation(Input::get('location'));
-        $issue->setDescription(Input::get('description'));
-        $issue->setMaplocation($maplocation);
+        $issue->setTitle($title);
+        $issue->setLocation($location);
+        $issue->setDescription($description);
+        $issue->setMaplocation($maploc);
         $issue->setSubmitDate(date("y-m-d"));
         $submitter = $requester->getNid();
         $database->addIssue($issue,);

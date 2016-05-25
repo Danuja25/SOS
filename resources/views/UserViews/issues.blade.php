@@ -151,12 +151,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="main-page">
         <div class="photoday-section">
             <div class="col-md-4 photoday-grid">
+                @foreach($issueArray as $issue)
+                <script>
+                   function addSolution(){
+                       $issNo = $issue->Issue_No;
+                       $.ajax({
+                           url: '{{url('solution')}}/' +  + '/' + newDate,
+                           success: function (data) {
+                               $('#restimes').html(data).show();
+                           }
+                       });
+                   }
+                </script>
                 <div class="photoday">
                     <img src="images/p.jpg" class="img-responsive" alt="">
                     <div class="photo-text">
-                        <h4>Strawhat In The Beach</h4>
-                        <p><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i> San Franciso, California, Uk</p>
+
+                        <h4>{{$issue->title}}</h4>
+                        <p><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>{{$issue->location}}</p>
                         <input type="submit" value="Vote"/>
+                        <button onclick="addSolution" type="button" value="Add Solution">Add Solution</button>
                     </div>
                     <div class="photo1">
                         <div class="col-md-4 phot-grid">
@@ -171,6 +185,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="clearfix"></div>
                     </div>
                 </div>
+                @endforeach
             </div>
 
             <div class="col-md-4 photoday-grid">

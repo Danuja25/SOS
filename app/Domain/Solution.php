@@ -34,22 +34,6 @@ class Solution
         $this->issueNo = $issueNo;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDeadline()
-    {
-        return $this->deadline;
-    }
-
-    /**
-     * @param mixed $deadline
-     */
-    public function setDeadline($deadline)
-    {
-        $this->deadline = $deadline;
-    }
-
 
 
     /**

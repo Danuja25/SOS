@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>S.O.S :: Add Issue</title>
+    <title>S.O.S :: Add Solution</title>
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +22,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             src="http://maps.googleapis.com/maps/api/js">
     </script>
     <script>
-        var maploc;
         var map;
         var myCenter=new google.maps.LatLng(6.79566,79.8994);
         var markers = [];		// Keeping an array of markers to add to the map
@@ -40,7 +39,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             google.maps.event.addListener(map, 'click', function(event) {			// Placing a listener to add a marker on the map when clicked.
                 placeMarker(event.latLng);
-                maploc = event.latLng;
             });
         }
 
@@ -145,51 +143,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="clearfix"> </div>
     </div>
 </div>
+
+
 <!-- contact -->
 <div class="container">
     <div class="contact-content">
         <div class="contact-info">
-            <h2>Add Issue</h2>
-            <div id="googleMap" style="width:1280px;height:720px;"></div>
+            <h2>Add Solution</h2>
+            <div id="googleMap" style="width:1000px;height:300px;"></div>
             <!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1609927.7974915467!2d144.41768979226285!3d-37.991357413515345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad646b5d2ba4df7%3A0x4045675218ccd90!2sMelbourne+VIC%2C+Australia!5e0!3m2!1sen!2sin!4v1430308946781" width="100%" height="450" frameborder="0" style="border:0"></iframe>-->
         </div>
 
         <div class="contact-details">
-            <form onsubmit="sendIssue()">
-                <input id="title" type="text" placeholder="Title" required/>
-                <input id="location" type="text" placeholder="Location" required/>
-                <textarea id="description" placeholder="Description"></textarea>
+            <form>
+                <input type="text" placeholder="Title" required/>
+                <input type="text" placeholder="Cost" required/>
+                <textarea placeholder="Description"></textarea>
                 <input type="submit" value="Submit"/>
             </form>
         </div>
 
     </div>
 </div>
-
-<script>
-
-    function sendIssue(){
-        var title = document.getElementById('title').value;
-        var location = document.getElementById('title').value;
-        var description = document.getElementById('title').value;
-
-        $.ajax({
-
-            url:'{{url('sendIssue')}}/'+ title +'/'+ location +'/'+ description+'/'+ maploc ,
-            success: function(data){
-                if (data ==1){
-
-                }
-                else{
-                    alert("Equipment details were updated successfully!");
-                    //$('#updatePanel').html(data).show();
-                }
-
-            }
-        })
-
-    }
-</script>
 
 <!-- contact -->
 <div class="footer">
