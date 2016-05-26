@@ -12,6 +12,7 @@ namespace App\Http\Controllers;
 use App\DataBase\DataBase;
 use App\Domain\Issue;
 use App\Domain\Requester;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
 class AddIssueController extends Controller
@@ -26,7 +27,8 @@ class AddIssueController extends Controller
         $issue->setMaplocation($maploc);
         $issue->setSubmitDate(date("y-m-d"));
         $submitter = $requester->getNid();
-        $database->addIssue($issue,);
+        $database->addIssue($issue,Auth::user());
+
     }
 
 

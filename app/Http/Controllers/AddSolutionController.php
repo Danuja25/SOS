@@ -11,6 +11,7 @@ namespace app\Http\Controllers;
 
 use App\Domain\Philanthropist;
 use App\Domain\Solution;
+use Illuminate\Support\Facades\Auth;
 
 class AddSolutionController extends Controller
 {

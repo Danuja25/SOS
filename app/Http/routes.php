@@ -21,7 +21,7 @@ Route::get('leaderboard', 'LeaderBoardController@ldrview');
 
 Route::get('issues', 'IssuesController@issues');
 
-Route::get('solution/{issue_No}','AddSolutionController@showpage')
+Route::get('solution/{issue_No}','AddSolutionController@showpage');
 
 Route::post('sendIssues/{title}/{location}/{description}/{maploc}', array('as'=>'sendIss','uses'=>'addIssueController@addIssue'));
 

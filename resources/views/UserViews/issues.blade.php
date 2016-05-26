@@ -154,11 +154,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 @foreach($issueArray as $issue)
                 <script>
                    function addSolution(){
-                       $issNo = $issue->Issue_No;
+                       $issNo = $issue->Issue_No;     //??
                        $.ajax({
-                           url: '{{url('solution')}}/' +  + '/' + newDate,
+                           url: '{{url('solution')}}/' + $issNo,
                            success: function (data) {
-                               $('#restimes').html(data).show();
+//                               $('#restimes').html(data).show();
                            }
                        });
                    }
@@ -170,7 +170,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <h4>{{$issue->title}}</h4>
                         <p><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>{{$issue->location}}</p>
                         <input type="submit" value="Vote"/>
-                        <button onclick="addSolution" type="button" value="Add Solution">Add Solution</button>
+                        <button onclick="addSolution()" type="button" value="Add Solution">Add Solution</button>
                     </div>
                     <div class="photo1">
                         <div class="col-md-4 phot-grid">
@@ -188,120 +188,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 @endforeach
             </div>
 
-            <div class="col-md-4 photoday-grid">
-                <div class="photoday">
-                    <img src="images/p.jpg" class="img-responsive" alt="">
-                    <div class="photo-text">
-                        <h4>Strawhat In The Beach</h4>
-                        <p><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i> San Franciso, California, Uk</p>
-                        <p>By: <a href="#">ThemePixabay</a></p>
-                    </div>
-                    <div class="photo1">
-                        <div class="col-md-4 phot-grid">
-                            <p><i class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></i> 32,102 </p>
-                        </div>
-                        <div class="col-md-4 phot-grid">
-                            <p><a href="#"><i class="glyphicon glyphicon-ok-circle" aria-hidden="true"></i> 1005 </a></p>
-                        </div>
-                        <div class="col-md-4 phot-grid">
-                            <p><a href="#"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i> 17/04/16 </a></p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-md-4 photoday-grid">
-                <div class="photoday">
-                    <img src="images/p.jpg" class="img-responsive" alt="">
-                    <div class="photo-text">
-                        <h4>Strawhat In The Beach</h4>
-                        <p><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i> San Franciso, California, Uk</p>
-                        <input type="submit" value="Vote"/>
-                    </div>
-                    <div class="photo1">
-                        <div class="col-md-4 phot-grid">
-                            <p><i class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></i> 32,102 </p>
-                        </div>
-                        <div class="col-md-4 phot-grid">
-                            <p><a href="#"><i class="glyphicon glyphicon-ok-circle" aria-hidden="true"></i> 1005 </a></p>
-                        </div>
-                        <div class="col-md-4 phot-grid">
-                            <p><a href="#"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i> 17/04/16 </a></p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 photoday-grid">
-                <div class="photoday">
-                    <img src="images/p.jpg" class="img-responsive" alt="">
-                    <div class="photo-text">
-                        <h4>Strawhat In The Beach</h4>
-                        <p><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i> San Franciso, California, Uk</p>
-                        <p>By: <a href="#">ThemePixabay</a></p>
-                    </div>
-                    <div class="photo1">
-                        <div class="col-md-4 phot-grid">
-                            <p><i class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></i> 32,102 </p>
-                        </div>
-                        <div class="col-md-4 phot-grid">
-                            <p><a href="#"><i class="glyphicon glyphicon-ok-circle" aria-hidden="true"></i> 1005 </a></p>
-                        </div>
-                        <div class="col-md-4 phot-grid">
-                            <p><a href="#"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i> 17/04/16 </a></p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 photoday-grid">
-                <div class="photoday">
-                    <img src="images/p.jpg" class="img-responsive" alt="">
-                    <div class="photo-text">
-                        <h4>Strawhat In The Beach</h4>
-                        <p><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i> San Franciso, California, Uk</p>
-                        <input type="submit" value="Vote"/>
-                    </div>
-                    <div class="photo1">
-                        <div class="col-md-4 phot-grid">
-                            <p><i class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></i> 32,102 </p>
-                        </div>
-                        <div class="col-md-4 phot-grid">
-                            <p><a href="#"><i class="glyphicon glyphicon-ok-circle" aria-hidden="true"></i> 1005 </a></p>
-                        </div>
-                        <div class="col-md-4 phot-grid">
-                            <p><a href="#"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i> 17/04/16 </a></p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 photoday-grid">
-                <div class="photoday">
-                    <img src="images/p.jpg" class="img-responsive" alt="">
-                    <div class="photo-text">
-                        <h4>Strawhat In The Beach</h4>
-                        <p><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i> San Franciso, California, Uk</p>
-                        <p>By: <a href="#">ThemePixabay</a></p>
-                    </div>
-                    <div class="photo1">
-                        <div class="col-md-4 phot-grid">
-                            <p><i class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></i> 32,102 </p>
-                        </div>
-                        <div class="col-md-4 phot-grid">
-                            <p><a href="#"><i class="glyphicon glyphicon-ok-circle" aria-hidden="true"></i> 1005 </a></p>
-                        </div>
-                        <div class="col-md-4 phot-grid">
-                            <p><a href="#"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i> 17/04/16 </a></p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
