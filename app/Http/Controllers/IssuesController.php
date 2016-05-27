@@ -10,16 +10,19 @@ namespace App\Http\Controllers;
 
 
 use App\DataBase\DataBase;
+use App\Issue;
+use Illuminate\Support\Facades\Auth;
 
 class IssuesController extends controller
 {
 
-    public function issues(){
-        $data = DataBase::getInstance()->loadIssuesByDate();
+    public function issues()
+    {
+        $issues=Issue::all();
 
         return view('UserViews.issues')
-            ->with('issueArray',$data)
-            ->with('user',Auth::user());
+            ->with('issues', $issues)
+            ->with('user', Auth::user());
 
     }
 

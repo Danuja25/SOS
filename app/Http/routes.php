@@ -10,34 +10,27 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('login', 'IndexController@login');
+Route::post('login', ['as' => 'login', 'uses' => 'Auth\AuthController@postLogin']);
+Route::get('logout','Auth\AuthController@getLogout');
 
-Route::get('/', 'IndexController@login');
+Route::get('register', array('as' => 'registerUser', 'uses' => 'UserController@viewRegister'));
+Route::post('register', array('as' => 'registerUser', 'uses' => 'UserController@create'));
+Route::get('/', function () {
+    if (\Illuminate\Support\Facades\Auth::check()) {
+        return redirect()->to('issues');
+    }
+    return redirect()->to('login');
+});
 
-Route::get('/j', 'IndexController@login');
-
-Route::get('addIssue', 'IndexController@addIssue');
-
-Route::get('leaderboard', 'LeaderBoardController@ldrview');
-
-Route::get('issues', 'IssuesController@issues');
-
-Route::get('solution/{issue_No}','AddSolutionController@showpage');
-
-Route::post('sendIssues/{title}/{location}/{description}/{maploc}', array('as'=>'sendIss','uses'=>'addIssueController@addIssue'));
-
-Route::get('first', array('as'=>'first','uses'=>'MoraController@first'));
-
-Route::get('reg', array('as'=>'register','uses'=>'IndexController@register'));
-
-Route::get('addIssue', 'IndexController@addIssue');
-
-Route::get('user', 'MoraController@seeUser');
-
-Route::get('/login', 'IndexController@login');
-
-Route::get('register', array('as'=>'registerForm','uses'=>'MoraController@register'));
-
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('addIssue', 'IndexController@addIssue');
+    Route::get('leaderboard', 'LeaderBoardController@ldrview');
+    Route::get('issues', 'IssuesController@issues');
+    Route::get('solution/{issue_No}', 'AddSolutionController@showpage');
+    Route::post('sendIssues/{title}/{location}/{description}/{maploc}', array('as' => 'sendIss', 'uses' => 'addIssueController@addIssue'));
+    Route::get('first', array('as' => 'first', 'uses' => 'MoraController@first'));
+    Route::get('reg', array('as' => 'register', 'uses' => 'IndexController@register'));
+    Route::get('addIssue', 'IndexController@addIssue');
+    Route::get('user', 'MoraController@seeUser');
+});

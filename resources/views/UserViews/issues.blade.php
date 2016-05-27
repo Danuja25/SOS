@@ -151,7 +151,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="main-page">
         <div class="photoday-section">
             <div class="col-md-4 photoday-grid">
-                @foreach($issueArray as $issue)
+                @foreach($issues as $issue)
                 <script>
                    function addSolution(){
                        $issNo = $issue->Issue_No;     //??
@@ -187,7 +187,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 @endforeach
             </div>
-
 
         </div>
     </div>
