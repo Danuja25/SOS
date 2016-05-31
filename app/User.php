@@ -35,4 +35,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public $timestamps = false;
     protected $primaryKey = "ID";
 
+    public function requester(){
+        return $this->$this->hasOne('App\Requester');
+    }
 }

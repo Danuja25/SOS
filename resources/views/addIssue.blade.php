@@ -22,7 +22,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             src="http://maps.googleapis.com/maps/api/js">
     </script>
     <script>
-        var maploc;
         var map;
         var myCenter=new google.maps.LatLng(6.79566,79.8994);
         var markers = [];		// Keeping an array of markers to add to the map
@@ -40,7 +39,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             google.maps.event.addListener(map, 'click', function(event) {			// Placing a listener to add a marker on the map when clicked.
                 placeMarker(event.latLng);
-                maploc = event.latLng;
             });
         }
 
@@ -71,6 +69,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
+
+    <script>
+        function previewFile(){
+            var preview = document.querySelector('img'); //selects the query named img
+            var file    = document.querySelector('input[type=file]').files[0]; //sames as here
+            var reader  = new FileReader();
+
+            /*reader.onloadend = function () {
+             preview.src = reader.result;
+             }
+             */
+            if (file) {
+                reader.readAsDataURL(file); //reads the data as a URL
+            } else {
+                preview.src = "";
+            }
+        }
+
+    </script>
+
     <!-- Mega Menu -->
 </head>
 <body>
@@ -155,41 +173,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
 
         <div class="contact-details">
-            <form onsubmit="sendIssue()">
-                <input id="title" type="text" placeholder="Title" required/>
-                <input id="location" type="text" placeholder="Location" required/>
-                <textarea id="description" placeholder="Description"></textarea>
+            <form>
+                <input type="text" placeholder="Title" required/>
+                <input type="text" placeholder="City" required/>
+                <!--<input type="text" placeholder="Phone" required/>
+                <input type="text" placeholder="City Name" required/>-->
+                <textarea placeholder="Description"></textarea>
+                <label>Upload Image </label><input type="file" onchange="previewFile()"><br>
+                <!--
+                                <img src="" height="200" alt="Image preview...">
+                -->
                 <input type="submit" value="Submit"/>
             </form>
         </div>
 
     </div>
 </div>
-
-<script>
-
-    function sendIssue(){
-        var title = document.getElementById('title').value;
-        var location = document.getElementById('title').value;
-        var description = document.getElementById('title').value;
-
-        $.ajax({
-
-            url:'{{url('sendIssue')}}/'+ title +'/'+ location +'/'+ description+'/'+ maploc ,
-            success: function(data){
-                if (data ==1){
-
-                }
-                else{
-                    alert("Equipment details were updated successfully!");
-                    //$('#updatePanel').html(data).show();
-                }
-
-            }
-        })
-
-    }
-</script>
 
 <!-- contact -->
 <div class="footer">
