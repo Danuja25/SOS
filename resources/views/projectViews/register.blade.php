@@ -141,6 +141,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <span>NIC No<label>*</label></span>
                     <input type="text" name="nic" required value="{{old('nic')}}">
                 </div>
+
                 <div class="wow fadeInRight" data-wow-delay="0.4s">
                     <span>Address<label></label></span>
                     <input type="text" name="address" required value="{{old('address')}}">
