@@ -17,7 +17,9 @@ Route::get('logout','Auth\AuthController@getLogout');
 Route::get('register', array('as' => 'registerUser', 'uses' => 'UserController@viewRegister'));
 Route::post('register', array('as' => 'registerUser', 'uses' => 'UserController@create'));
 Route::get('registerReq', array('as' => 'registerReq', 'uses' => 'UserController@viewRequesterReg'));
-Route::post('registerReq', array('as' => 'registerReq', 'uses' => 'UserController@create'));
+Route::post('registerReq', array('as' => 'registerReq', 'uses' => 'UserController@createRequester'));
+Route::get('registerPh', array('as' => 'registerPh', 'uses' => 'UserController@viewPhilanthropistReg'));
+Route::post('registerPh', array('as' => 'registerPh', 'uses' => 'UserController@createPhilanthropist'));
 Route::get('/', function () {
     if (\Illuminate\Support\Facades\Auth::check()) {
         return redirect()->to('issues');

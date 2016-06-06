@@ -95,9 +95,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="head-right">
             <ul class="number">
-                <li><a href="login.html"><i class="roc"> </i>Log in</a></li>
-                <li><a href="register.html"><i class="phone"> </i>Sign Up</a></li>
-                <li><a href="contact.html"><i class="mail"> </i>Contact</a></li>
+                <li><a href="login"><i class="roc"> </i>Log in</a></li>
+                <li><a href="register"><i class="phone"> </i>Sign Up</a></li>
+                <li><a href="contact"><i class="mail"> </i>Contact</a></li>
                 <div class="clearfix"></div>
             </ul>
         </div>
@@ -112,7 +112,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <h3>NEW USERS</h3>
 
                 <p>Register in the system using your National ID and start raising your issues.</p>
-                <a class="acount-btn" href="register.html">Create an Account</a>
+                <a class="acount-btn" href="registerReq">As a Requster</a>
+                <a class="acount-btn" href="registerPh">As a Philanthropist</a>
             </div>
             <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
                 <h3>REGISTERED USERS</h3>
@@ -146,7 +147,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Password<label>*</label></span>
                         <input type="password" name="Password">
                     </div>
-                    <a class="forgot" href="#">Forgot Your Password?</a>
+                    {{--<a class="forgot" href="#">Forgot Your Password?</a>--}}
                     <input type="submit" value="Login">
                 </form>
             </div>
@@ -168,10 +169,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="col-md-3 abo-foo">
             <h5>Account Information</h5>
             <ul>
-                <li><a href="login.html">How to login</a></li>
-                <li><a href="register.html">Create an account</a></li>
-                <li><a href="login.html">Logout</a></li>
-                <li><a href="register.html">Join us</a></li>
+                <li><a href="login">How to login</a></li>
+                <li><a href="register">Create an account</a></li>
+                <li><a href="login">Logout</a></li>
+                <li><a href="register">Join us</a></li>
             </ul>
         </div>
         <div class="col-md-2 abo-foo1">

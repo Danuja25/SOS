@@ -122,7 +122,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header">
     <div class="container">
         <div class="logo">
-            <a href="index.html"><img src="images/logo.png" class="img-responsive" alt=""></a>
+            <a href="index"><img src="images/logo.png" class="img-responsive" alt=""></a>
         </div>
         <div class="header-left">
             <li a="" href="#"><div class="drop-down">
@@ -146,18 +146,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="megapanel">
                         <div class="na-left">
                             <ul class="grid-img-list">
-                                <li><a href="location.html">Current Issues </a></li> |
-                                <li><a href="addlocation.html">Solved Issues </a></li> |
-                                <li><a href="location.html"> Review a location  </a></li> |
-                                <li><a href="location.html">Review a location</a></li>
+                                <li><a href="location">Current Issues </a></li> |
+                                <li><a href="addlocation">Solved Issues </a></li> |
+                                <li><a href="location"> Review a location  </a></li> |
+                                <li><a href="location">Review a location</a></li>
                                 <div class="clearfix"> </div>
                             </ul>
                         </div>
                         <div class="na-right">
                             <ul class="grid-img-list">
-                                <li><a href="login.html">Login Here or</a></li>
+                                <li><a href="login">Login Here or</a></li>
                                 <li class="reg">
-                                    <form action="register.html">
+                                    <form action="register">
                                         <input type="submit" value="Register">
                                     </form>
                                 </li>
@@ -167,8 +167,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="clearfix"> </div>
                     </div>
                 </li>
-                <li><a href="404.html" class="scroll"> <span class="service"> </span>Philanthropists</a></li>
-                <li><a href="shop.html" class="scroll"><span class="mail"> </span> Leader board </a></li>
+                <li><a href="404" class="scroll"> <span class="service"> </span>Philanthropists</a></li>
+                <li><a href="shop" class="scroll"><span class="mail"> </span> Leader board </a></li>
                 <div class="clearfix"></div>
             </ul>
             <script>
@@ -180,9 +180,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="head-right">
             <ul class="number">
-                <li><a href="login.html"><i class="roc"> </i>Log in</a></li>
-                <li><a href="register.html"><i class="phone"> </i>Sign Up</a></li>
-                <li><a href="contact.html"><i class="mail"> </i>Contact</a></li>
+                <li><a href="login"><i class="roc"> </i>Log in</a></li>
+                <li><a href="register"><i class="phone"> </i>Sign Up</a></li>
+                <li><a href="contact"><i class="mail"> </i>Contact</a></li>
                 <div class="clearfix"> </div>
             </ul>
         </div>
@@ -190,86 +190,95 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 <!-- registration -->
-<form class="main-1"  onsubmit="return formValidation();">
+<form class="main-1"  action="{{route('registerPh')}}" method="POST">
     <div class="container">
-        <form name="mainForm">
             <div class="register">
-                <>
-
                 <div class="register-top-grid">
                     <h3>PERSONAL INFORMATION</h3>
+
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            @foreach($errors->all() as $error)
+                                {{$error}}
+                            @endforeach
+                        </div>
+                    @endif
+
+                    @if(session()->has('success'))
+                        <div class="alert alert-danger">
+                            {{session('success')}}
+                        </div>
+                    @endif
+
+                    <input hidden name="_token" value="{{csrf_token()}}">
+
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span class="">First Name<label>*</label></span>
-                        <form> <input type="text" name="fname" required> </form>
+                         <input type="text" name="fname" required value="{{old('fname')}}">
                     </div>
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Last Name<label>*</label></span>
-                        <input type="text" name="lname" required>
+                        <input type="text" name="lname" required value="{{old('lname')}}">
                     </div>
-                    <!--		 <div class="booki1"><span>Designation : </span><select id="country" onchange="change_country(this.value)" class="frm-field required">
-                                 <option value="null">Mr</option>
-                                 <option value="null">Mrs</option>
-                                 <option value="AX">Ms</option>
-                                 <option value="AX">Rev</option>
-                             </select><div class="clearfix"> </div></div>-->
+
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>NID No<label>*</label></span>
-                        <input type="text" name="nid" required>
+                        <input type="text" name="nic" required value="{{old('nic')}}">
                     </div>
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Contact No.<label></label></span>
-                        <input type="text" name="add" required>
+                        <input type="text" name="contact" required value="{{old('contact')}}">
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Occupation<label>*</label></span>
-                        <input type="text" name="nid" required>
+                        <input type="text" name="occupation" required value="{{old('occupation')}}">
                     </div>
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Place of work<label></label></span>
-                        <input type="text" name="add" required>
+                        <input type="text" name="workplace" required value="{{old('workplace')}}">
+                    </div>
+                    <div class="wow fadeInRight" data-wow-delay="0.4s">
+                        <span>City<label></label></span>
+                        <input type="text" name="city" required value="{{old('city')}}">
                     </div>
 
                     <div class="clearfix"> </div>
                     <a class="news-letter" href="#">
-                        <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>I certify that these details are correct</label>
-                    </a>
+                        <input type="checkbox" name="terms-check" id="terms-check"
+                               @if(old('checkbox')) checked @endif>
+                        <i> </i>I certify that these details are correct </a>
                 </div>
                 <div class="register-bottom-grid">
                     <h3>LOGIN INFORMATION</h3>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Username<label>*</label></span>
-                        <input type="text" name="uname" required>
+                        <input type="text" name="username" required value="{{old('username')}}">
 
                     </div>
                 </div>
 
                 <div class="clearfix"> </div>
-                <div class="register-but">
-                    <form>
-                        <input type="button" value="Check Availability">
-                        <div class="clearfix"> </div>
-                    </form>
-                </div>
+
                 <div class="register-bottom-grid">
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Password<label>*</label></span>
-                        <input type="password" name="pass" required>
+                        <input type="password" name="password" required>
                     </div>
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Confirm Password<label>*</label></span>
-                        <input type="password" name="conpass" required>
+                        <input type="password" name="password_confirmation" required>
                     </div>
                 </div>
 
                 <div class="clearfix"> </div>
                 <div class="register-but">
-                    <form>
+
                         <input type="submit" value="submit">
                         <div class="clearfix"> </div>
-                    </form>
+
                 </div>
             </div>
-        </form>
+
     </div>
 </form>
 <!-- registration -->
@@ -278,7 +287,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="col-md-2 abo-foo1">
             <h5>About Us</h5>
             <ul>
-                <li><a href="about.html">About us</a></li>
+                <li><a href="about">About us</a></li>
                 <li><a href="#">Who started it</a></li>
                 <li><a href="#">how to help</a></li>
             </ul>
@@ -286,10 +295,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="col-md-3 abo-foo">
             <h5>Account Information</h5>
             <ul>
-                <li><a href="login.html">How to login</a></li>
-                <li><a href="register.html">Create an account</a></li>
-                <li><a href="login.html">Logout</a></li>
-                <li><a href="register.html">Join us</a></li>
+                <li><a href="login">How to login</a></li>
+                <li><a href="register">Create an account</a></li>
+                <li><a href="login">Logout</a></li>
+                <li><a href="register">Join us</a></li>
             </ul>
         </div>
         <div class="col-md-2 abo-foo1">
