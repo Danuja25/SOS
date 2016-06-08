@@ -26,4 +26,32 @@ class IssuesController extends controller
 
     }
 
+    public function createIssue(Request $request)
+    {
+        Log::info($request->all());
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'city' => 'required',
+            'description' => 'required'
+
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $user = Auth::user();
+        $issue = new Issue();
+        $issue->Title = $request->title;
+        $issue->Submitter= $user;           ;
+        $issue->Location = $request->city;
+        $issue->Description = $request->description;
+        $issue->MapLocation = $request->maploc;
+        $issue->SubmittedDate = date("y-m-d");
+        $issue->Image = $request->image;
+        $issue->save();
+
+
+        return redirect()->to('login')->with('success', 'User registered successfully. Please login');
+    }
+
 }

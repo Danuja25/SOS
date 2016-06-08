@@ -25,6 +25,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         var map;
         var myCenter=new google.maps.LatLng(6.79566,79.8994);
         var markers = [];		// Keeping an array of markers to add to the map
+        var maploc;
 
         function initialize()
         {    // setting map properties
@@ -39,6 +40,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             google.maps.event.addListener(map, 'click', function(event) {			// Placing a listener to add a marker on the map when clicked.
                 placeMarker(event.latLng);
+                maploc = event.latLng;
             });
         }
 
@@ -172,14 +174,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1609927.7974915467!2d144.41768979226285!3d-37.991357413515345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad646b5d2ba4df7%3A0x4045675218ccd90!2sMelbourne+VIC%2C+Australia!5e0!3m2!1sen!2sin!4v1430308946781" width="100%" height="450" frameborder="0" style="border:0"></iframe>-->
         </div>
 
-        <div class="contact-details">
-            <form>
-                <input type="text" placeholder="Title" required/>
-                <input type="text" placeholder="City" required/>
-                <!--<input type="text" placeholder="Phone" required/>
-                <input type="text" placeholder="City Name" required/>-->
-                <textarea placeholder="Description"></textarea>
-                <label>Upload Image </label><input type="file" onchange="previewFile()"><br>
+        <div class="contact-details" >
+            <form class="main-1" action="{{route('addIssue')}}" method="POST">
+                <input type="text" name="title" placeholder="Title" required/>
+                <input type="text" name="city" placeholder="City" required/>
+                <input type="hidden" name="maploc" value=maploc  />
+                {{--<input type="hidden" name="user" value={{user}}  />--}}
+                <textarea name="description" placeholder="Description"></textarea>
+                <label>Upload Image </label><input type="file" name="image" onchange="previewFile()"><br>
                 <!--
                                 <img src="" height="200" alt="Image preview...">
                 -->

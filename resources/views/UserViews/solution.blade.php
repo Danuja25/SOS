@@ -38,7 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
             google.maps.event.addListener(map, 'click', function(event) {			// Placing a listener to add a marker on the map when clicked.
-                placeMarker(event.latLng);
+                placeMarker({{maploc}});
             });
         }
 
@@ -156,9 +156,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <div class="contact-details">
             <form>
-                <input type="text" placeholder="Title" required/>
-                <input type="text" placeholder="Cost" required/>
-                <textarea placeholder="Description"></textarea>
+                <input type="text" name="title" placeholder="Title" required/>
+                <input type="text" name="cost" placeholder="Cost" required/>
+                <textarea name="description" placeholder="Description"></textarea>
+                {{--<input type="hidden" name="user" value={{user}}  />--}}
                 <input type="submit" value="Submit"/>
             </form>
         </div>
