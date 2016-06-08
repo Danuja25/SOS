@@ -176,6 +176,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <div class="contact-details" >
             <form class="main-1" action="{{route('addIssue')}}" method="POST">
+
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        @foreach($errors->all() as $error)
+                            {{$error}}
+                        @endforeach
+                    </div>
+                @endif
+
+                @if(session()->has('success'))
+                    <div class="alert alert-danger">
+                        {{session('success')}}
+                    </div>
+                @endif
+
+                <input hidden name="_token" value="{{csrf_token()}}">
                 <input type="text" name="title" placeholder="Title" required/>
                 <input type="text" name="city" placeholder="City" required/>
                 <input type="hidden" name="maploc" value=maploc  />

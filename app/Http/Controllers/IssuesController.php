@@ -12,6 +12,9 @@ namespace App\Http\Controllers;
 use App\DataBase\DataBase;
 use App\Issue;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class IssuesController extends controller
 {
@@ -24,6 +27,12 @@ class IssuesController extends controller
             ->with('issues', $issues)
             ->with('user', Auth::user());
 
+    }
+
+    public function viewAddIssue()
+    {
+        return view('addIssue')
+            ->with('user', Auth::user());
     }
 
     public function createIssue(Request $request)
@@ -40,9 +49,10 @@ class IssuesController extends controller
         }
 
         $user = Auth::user();
+        $nid = $user->NID;
         $issue = new Issue();
         $issue->Title = $request->title;
-        $issue->Submitter= $user;           ;
+        $issue->Submitter= $nid;           ;
         $issue->Location = $request->city;
         $issue->Description = $request->description;
         $issue->MapLocation = $request->maploc;
@@ -51,7 +61,7 @@ class IssuesController extends controller
         $issue->save();
 
 
-        return redirect()->to('login')->with('success', 'User registered successfully. Please login');
+        return redirect()->to('issues')->with('success', 'Issue added successfully. Thank you!!!');
     }
 
 }

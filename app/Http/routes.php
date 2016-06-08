@@ -28,13 +28,15 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('addIssue', 'IndexController@addIssue');
+    Route::get('addIssue', array('as' => 'addIssue', 'uses' => 'IssuesController@viewAddIssue'));
+    Route::post('addIssue', 'IssuesController@createIssue');
     Route::get('leaderboard', 'LeaderBoardController@ldrview');
     Route::get('issues', 'IssuesController@issues');
-    Route::get('solution/{issue_No}', 'AddSolutionController@showpage');
+    Route::get('addSolution/{issue}', 'SolutionsController@viewAddSolution');
+    Route::post('addSolution', 'SolutionsController@createSolution');
     Route::post('sendIssues/{title}/{location}/{description}/{maploc}', array('as' => 'sendIss', 'uses' => 'addIssueController@addIssue'));
     Route::get('first', array('as' => 'first', 'uses' => 'MoraController@first'));
     Route::get('reg', array('as' => 'register', 'uses' => 'IndexController@register'));
-    Route::get('addIssue', 'IndexController@addIssue');
+
     Route::get('user', 'MoraController@seeUser');
 });

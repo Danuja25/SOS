@@ -167,10 +167,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <img src="images/p.jpg" class="img-responsive" alt="">
                     <div class="photo-text">
 
-                        <h4>{{$issue->title}}</h4>
-                        <p><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>{{$issue->location}}</p>
+                        <h4>{{$issue->Title}}</h4>
+                        <p><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>{{$issue->Location}}</p>
                         <input type="submit" value="Vote"/>
-                        <button onclick="addSolution()" type="button" value="Add Solution">Add Solution</button>
+                        <button href="addSolution{{$issue->Issue_No}}" type="button" value="Add Solution">Add Solution</button>
                     </div>
                     <div class="photo1">
                         <div class="col-md-4 phot-grid">
