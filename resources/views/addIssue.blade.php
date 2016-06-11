@@ -41,8 +41,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             google.maps.event.addListener(map, 'click', function(event) {			// Placing a listener to add a marker on the map when clicked.
                 placeMarker(event.latLng);
                 maploc = event.latLng;
+                document.getElementById("location").value=maploc;
+                alert(document.getElementById("location").value);
             });
+
+
+
         }
+
 
         // Set markers on the map
         function setMapOnAll(map) {
@@ -67,6 +73,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 infowindow.open(map,marker);
             });
             markers.push(marker);		// Add the marker to the array
+            document.getElementById('lat').value = marker.getPosition().lat();
+            document.getElementById('lng').value = marker.getPosition().lng();
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);
@@ -165,6 +173,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="clearfix"> </div>
     </div>
 </div>
+
 <!-- contact -->
 <div class="container">
     <div class="contact-content">
@@ -192,10 +201,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 @endif
 
                 <input hidden name="_token" value="{{csrf_token()}}">
+
+                <input type="text" id="lat"  name="maplat" placeholder="Latitude" />
+                <input type="text" id="lng"  name="maplng" placeholder="Longitude"/>
                 <input type="text" name="title" placeholder="Title" required/>
                 <input type="text" name="city" placeholder="City" required/>
-                <input type="hidden" name="maploc" value=maploc  />
-                {{--<input type="hidden" name="user" value={{user}}  />--}}
                 <textarea name="description" placeholder="Description"></textarea>
                 <label>Upload Image </label><input type="file" name="image" onchange="previewFile()"><br>
                 <!--

@@ -8,6 +8,8 @@
 
 namespace App\Http\Controllers;
 use app\DataBase\DataBase;
+use Illuminate\Support\Facades\Auth;
+use App\Issue;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -33,6 +35,7 @@ class IndexController extends Controller
         return view('projectViews.register');
     }
 
+
     public function checkUser($username,$password){
         $users = DB::select('SELECT * FROM User WHERE Username = ? AND Password = ?',[$username,$password]);
         if(count($users)<=0)
@@ -53,6 +56,19 @@ class IndexController extends Controller
     public function getUserVotedIssues($nid){
         $userVotes = DB::select('SELECT Title,Location,MapLocation,No_of_votes FROM IssueVotes NATURAL JOIN Issues WHERE VoterID = ? ORDER BY SubmittedDate DESC', [$nid]);
         return $userVotes;
+    }
+
+    public function reqIndex()
+    {
+        $user = Auth::user();
+        $addedIssues=Issue::all()->where('Submitter',$user->NID);
+        $votes = IssueVotes::all->where('voterID',$user->NID);
+        $votedIssues=Issue::all()->where('Submitter',$user->NID);
+
+        return view('UserViews.reqIndex')
+            ->with('addedIssues', $addedIssues)
+            ->with('user', Auth::user());
+
     }
 
 

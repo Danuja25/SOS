@@ -26,7 +26,8 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers;
 
-    protected $redirectTo = "issues";
+
+    protected $redirectTo = "/";
     protected $loginPath = "login";
 
 

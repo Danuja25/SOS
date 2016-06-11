@@ -55,7 +55,8 @@ class IssuesController extends controller
         $issue->Submitter= $nid;           ;
         $issue->Location = $request->city;
         $issue->Description = $request->description;
-        $issue->MapLocation = $request->maploc;
+        $issue->MapLat = $request->maplat;
+        $issue->MapLng = $request->maplng;
         $issue->SubmittedDate = date("y-m-d");
         $issue->Image = $request->image;
         $issue->save();

@@ -18,98 +18,6 @@
     <script type="text/javascript" src="js/megamenu.js"></script>
     <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
     <!-- Mega Menu -->
-
-    <script
-            src="http://maps.googleapis.com/maps/api/js">
-    </script>
-    <script>
-        var map;
-        var myCenter=new google.maps.LatLng(6.79566,79.8994);
-        var markers = [];		// Keeping an array of markers to add to the map
-
-        function initialize()
-        {    // setting map properties
-            var mapProp = {
-                center:myCenter,
-                zoom:15,
-                mapTypeId:google.maps.MapTypeId.ROADMAP
-            };
-
-            map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
-            google.maps.event.addListener(map, 'click', function(event) {			// Placing a listener to add a marker on the map when clicked.
-                placeMarker(event.latLng);
-            });
-        }
-
-        // Set markers on the map
-        function setMapOnAll(map) {
-            for (var i = 0; i < markers.length; i++) {
-                markers[i].setMap(map);
-            }
-        }
-
-        // Setting marker properties
-        function placeMarker(location) {
-            setMapOnAll(null);
-            var marker = new google.maps.Marker({
-                position: location,
-                map: map,
-                label: 'O',
-            });
-            var infowindow = new google.maps.InfoWindow({			// Setting information windows for each marker
-                content: 'Added by: ' + '' + '<br>Votes: ' + ''
-            });
-            infowindow.open(map,marker);
-            marker.addListener('click',function(){			// Adding a listener to open the window when marker is clicked
-                infowindow.open(map,marker);
-            });
-            markers.push(marker);		// Add the marker to the array
-        }
-
-        // adjust the number of markers when spanning
-        function showMarkers() {
-            var bounds = map.getBounds();
-
-            // Call you server with ajax passing it the bounds
-
-            // In the ajax callback delete the current markers and add new markers
-
-            var southWest = bounds.getSouthWest();
-            var northEast = bounds.getNorthEast();
-
-            $.ajax({
-
-                url: 'your_backend_page.php',
-                cache: false,
-                data: {
-                    'fromlat': southWest.lat(),
-                    'tolat': northEast.lat(),
-                    'fromlng': southWest.lng(),
-                    'tolng': northEast.lng()
-                },
-
-                dataType: 'json',
-                type: 'GET',
-
-                async: false,
-
-                success: function (data) {
-
-                    if (data) {
-
-                        $.each(data, function (i, item) {
-
-                            placeMarkerMarker(item.latLng);
-                        });
-                    }
-                }
-            });
-        }
-
-        google.maps.event.addListener(map, 'idle', showMarkers);
-        google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
 </head>
 <body>
 <!-- banner -->
@@ -184,16 +92,14 @@
     </div>
 </div>
 <div class="banner">
-    <div id="googleMap" style="width:1500px;height:450px;"></div>
-{{--    <iframe
+    <iframe
             width="1500"
             height="450"
             frameborder="0" style="border:0"
             src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAP4OEm9PpWU_wsK8_8ust-5EyRUyOkY80
     &q=University of Moratuwa,Sri Lanka" allowfullscreen>
-    </iframe>--}}
+    </iframe>
 </div>
-
 <div class="banner-info">
     <div class="container">
         <div class="reservation">
@@ -234,7 +140,15 @@
         <div class="loc-right">
             <div class="loc-top">
                 <h3>Issues you’ve Add</h3>
-                <div class="blas">
+                @foreach($issues as $issue)
+                    <div class="blas">
+                        <li class="wicked">{{$issue->Title}} </li>
+                        <li class="mullet">{{$issue->Location}}</li>
+                        <li class="see"><a href="#">Check issue</a></li>
+                        <li class="com"><a >{{$issue->No_of_votes}}</a></li>
+                    </div>
+                @endforeach
+                {{--<div class="blas">
                     <li class="wicked">Broken bridge </li>
                     <li class="mullet">Senanayaka road, Thudawa</li>
                     <li class="see"><a href="#">See Location</a></li>
@@ -257,7 +171,7 @@
                     <li class="mullet">Palatuwa MMV</li>
                     <li class="see"><a href="#">See Location</a></li>
                     <li class="loc"><a href="#">286</a></li>
-                </div>
+                </div>--}}
             </div>
             <div class="loc-top">
                 <h3>Recent issues you've voted</h3>
