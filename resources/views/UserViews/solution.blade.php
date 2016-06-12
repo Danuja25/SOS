@@ -37,13 +37,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
-            @foreach($issue as $iss)
-                $location = {{$iss->Maplat}});
+
                 google.maps.event.addListener(map, 'click', function (event) {			// Placing a listener to add a marker on the map when clicked.
                     placeMarker($location);
                 });
 
-            @endforeach
+
         }
 
         // Set markers on the map
@@ -160,9 +159,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <p> {{$issue->Description}}</p>
         <div class="contact-details">
-            <form>
+            <form class="main-1" action="{{route('addSolution')}}" method="POST">
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        @foreach($errors->all() as $error)
+                            {{$error}}
+                        @endforeach
+                    </div>
+                @endif
+
+                @if(session()->has('success'))
+                    <div class="alert alert-danger">
+                        {{session('success')}}
+                    </div>
+                @endif
+
+                <input hidden name="_token" value="{{csrf_token()}}">
+
                 <input type="text" name="title" placeholder="Title" required/>
                 <input type="text" name="cost" placeholder="Cost" required/>
+                {{--<input type="text" name="issueNo" value={{$issue->Issue_No}} />--}}
                 <textarea name="description" placeholder="Description"></textarea>
                 {{--<input type="hidden" name="user" value={{user}}  />--}}
                 <input type="submit" value="Submit"/>

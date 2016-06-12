@@ -35,6 +35,15 @@ class IssuesController extends controller
             ->with('user', Auth::user());
     }
 
+    public function viewIssueDetails($issueNo)
+    {
+        $viewIssue = Issue::all()->find($issueNo);
+
+        return view('UserViews.issueDetails')
+            ->with('user', Auth::user())
+            ->with('issue',$viewIssue);
+    }
+
     public function createIssue(Request $request)
     {
         Log::info($request->all());

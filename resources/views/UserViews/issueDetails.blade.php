@@ -2,13 +2,9 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>S.O.S :: Issues</title>
+    <title>S.O.S :: Issue Details</title>
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
-    <link href="css/bootstrap1.css" rel="stylesheet" type="text/css" media="all">
-
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="css/style1.css" rel="stylesheet" type="text/css" media="all" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Location Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
@@ -17,16 +13,64 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
     <script src="js/jquery.min.js"></script>
-
     <script src="js/jquery.easydropdown.js"></script>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <!-- Mega Menu -->
     <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
     <script type="text/javascript" src="js/megamenu.js"></script>
     <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+    <script
+            src="http://maps.googleapis.com/maps/api/js">
+    </script>
+    <script>
+        var map;
+        var myCenter=new google.maps.LatLng(6.79566,79.8994);
+        var markers = [];		// Keeping an array of markers to add to the map
 
+        function initialize()
+        {    // setting map properties
+            var mapProp = {
+                center:myCenter,
+                zoom:15,
+                streetViewControl: false,
+                mapTypeId:google.maps.MapTypeId.ROADMAP
+            };
+
+            map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+            google.maps.event.addListener(map, 'click', function(event) {			// Placing a listener to add a marker on the map when clicked.
+                placeMarker(event.latLng);
+            });
+
+        }
+
+        // Set markers on the map
+        function setMapOnAll(map) {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+            }
+        }
+
+        // Setting marker properties
+        function placeMarker(location) {
+            setMapOnAll(null);
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                label: 'O',
+            });
+            var infowindow = new google.maps.InfoWindow({			// Setting information windows for each marker
+                content: 'Added by: ' + '' + '<br>Votes: ' + ''
+            });
+            infowindow.open(map,marker);
+            marker.addListener('click',function(){			// Adding a listener to open the window when marker is clicked
+                infowindow.open(map,marker);
+            });
+            markers.push(marker);		// Add the marker to the array
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    <!-- Mega Menu -->
 </head>
 <body>
 <!-- banner -->
@@ -36,7 +80,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <a href="index.html"><img src="images/logo.png" class="img-responsive" alt=""></a>
         </div>
         <div class="header-left">
-
+            <li a="" href="#"><div class="drop-down">
+                    <select class="d-arrow">
+                        <option value="Eng">Our Network</option>
+                        <option value="Fren">versions</option>
+                        <option value="Russ">variations</option>
+                        <option value="Chin">Internet</option>
+                    </select>
+                </div></li>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -46,12 +97,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="top-nav">
             <span class="menu"> </span>
             <ul class="navig megamenu skyblue">
-                <li><a href="location.html" class="scroll"><span> </span> Issues</a>
+                <li><a href="location.html" class="scroll"><span> </span> Find Locations</a>
                     <div class="megapanel">
                         <div class="na-left">
                             <ul class="grid-img-list">
-                                <li><a href="location.html">Current Issues </a></li> |
-                                <li><a href="addlocation.html">Solved Issues </a></li> |
+                                <li><a href="location.html">Find a Location  </a></li> |
+                                <li><a href="addlocation.html">Add a location </a></li> |
                                 <li><a href="location.html"> Review a location  </a></li> |
                                 <li><a href="location.html">Review a location</a></li>
                                 <div class="clearfix"> </div>
@@ -71,8 +122,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="clearfix"> </div>
                     </div>
                 </li>
-                <li><a href="404.html" class="scroll"> <span class="service"> </span>Philanthropists</a></li>
-                <li><a href="shop.html" class="scroll"><span class="mail"> </span> Leader board </a></li>
+                <li><a href="404.html" class="scroll"> <span class="service"> </span>Our Species</a></li>
+                <li><a href="shop.html" class="scroll"><span class="mail"> </span>Shop </a></li>
                 <div class="clearfix"></div>
             </ul>
             <script>
@@ -84,7 +135,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="head-right">
             <ul class="number">
-                <li><a href="login.html"><i class="roc"> </i>Log in</a></li>
+                <li><a href="login.html"><i class="roc"> </i>My Account</a></li>
                 <li><a href="register.html"><i class="phone"> </i>Sign Up</a></li>
                 <li><a href="contact.html"><i class="mail"> </i>Contact</a></li>
                 <div class="clearfix"> </div>
@@ -94,45 +145,46 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 
-<!--Issues-->
 
-<!--<div class="addlocation">-->
+<!-- contact -->
 <div class="container">
-    <div class="main-page">
-        <div class="photoday-section">
-            <div class="col-md-4 photoday-grid">
-                @foreach($issues as $issue)
-
-                <div class="photoday">
-                    <img src="images/p.jpg" class="img-responsive" alt="">
-                    <div class="photo-text">
-
-                        <h4>{{$issue->Title}}</h4>
-                        <p><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>{{$issue->Location}}</p>
-                        <input type="submit" value="Vote"/>
-                        <li><a href="addSolution/{{$issue->Issue_No}}">Add Solution </a></li>
-                        <li><a href="issDetails/{{$issue->Issue_No}}">View Details</a></li>
-                    </div>
-                    <div class="photo1">
-                        <div class="col-md-4 phot-grid">
-                            <p><i class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></i> 32,102 </p>
-                        </div>
-                        <div class="col-md-4 phot-grid">
-                            <p><a href="#"><i class="glyphicon glyphicon-ok-circle" aria-hidden="true"></i> 1005 </a></p>
-                        </div>
-                        <div class="col-md-4 phot-grid">
-                            <p><a href="#"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i> 17/04/16 </a></p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-
+    <div class="contact-content">
+        <div class="contact-info">
+            <h2>Issue Details</h2>
+            <div id="googleMap" style="width:1000px;height:300px;"></div>
+            <!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1609927.7974915467!2d144.41768979226285!3d-37.991357413515345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad646b5d2ba4df7%3A0x4045675218ccd90!2sMelbourne+VIC%2C+Australia!5e0!3m2!1sen!2sin!4v1430308946781" width="100%" height="450" frameborder="0" style="border:0"></iframe>-->
         </div>
+
+
+        <div class="contact-details">
+            <form>
+                <h4>Title</h4>
+                <p>{{$issue->Title}}</p>
+                <p>.                        </p>
+                <h4>Submitter </h4>
+                <p>{{$issue->Submitter}}</p>
+                <p>.                        </p>
+                <h4>City </h4>
+                <p>{{$issue->Location}}</p>
+                <p>.                        </p>
+                <h4>Date of submission </h4>
+                <p>{{$issue->SubmittedDate}}</p>
+                <p>.                        </p>
+                <h4>Description </h4>
+                <p>{{$issue->Description}}</p>
+                <p>.                        </p>
+
+                <a class="acount-btn" href="register_ph.html">Vote</a>
+                <a class="acount-btn" href="register_ph.html">Add Solution</a>
+
+
+            </form>
+        </div>
+
     </div>
 </div>
-<!-- 404 -->
+
+<!-- contact -->
 <div class="footer">
     <div class="container">
         <div class="col-md-2 abo-foo1">
@@ -183,10 +235,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="clearfix"></div>
         <div class="footer-bottom">
-            <p>Copyrights © 2015 Location All rights reserved.</p>
+            <p>Copyrights © 2015 Location All rights reserved | Template by <a href="http://w3layouts.com/">&nbsp; W3layouts</a></p>
         </div>
     </div>
 </div>
-
 </body>
 </html>

@@ -160,28 +160,19 @@
                     <li class="see"><a href="#">See Location</a></li>
                     <li class="loc"><a href="#">13</a></li>
                 </div>
-                <div class="blas">
-                    <li class="wicked">Health hazard due to massive garbage dump</li>
-                    <li class="mullet">Kalidasa avenue, Malimbada</li>
-                    <li class="see"><a href="#">See Location</a></li>
-                    <li class="com"><a href="#">74</a></li>
-                </div>
-                <div class="ball">
-                    <li class="wicked">Reparing roof of a building in the school</li>
-                    <li class="mullet">Palatuwa MMV</li>
-                    <li class="see"><a href="#">See Location</a></li>
-                    <li class="loc"><a href="#">286</a></li>
-                </div>--}}
+               --}}
             </div>
             <div class="loc-top">
                 <h3>Recent issues you've voted</h3>
                 <div class="air">
-                    <li class="wicked">Broken drain</li>
-                    <li class="mullet">1st Lane, Nupe</li>
-                    <li class="see"><a href="#">See Location</a></li>
-                    <li class="loc"><a href="#">28</a></li>
+                    @foreach($votes as $vote)
+                    <li class="wicked">{{$vote->Title}}</li>
+                    <li class="mullet">{{$vote->Location}}</li>
+                    <li class="see"><a href="#">Check location</a></li>
+                    <li class="loc"><a >{{$vote->$No_of_votes}}</a></li>
                 </div>
-                <div class="ball">
+                @endforeach
+                {{--<div class="ball">
                     <li class="wicked">Malfunctional street lights</li>
                     <li class="mullet">Akuressa road, Hittetiya</li>
                     <li class="see"><a href="#">See Location</a></li>
@@ -228,7 +219,7 @@
                     <li class="mullet">Data</li>
                     <li class="see"><a href="#">See Location</a></li>
                     <li class="loc"><a href="#">286</a></li>
-                </div>
+                </div>--}}
             </div>
         </div>
         <div class="clearfix"></div>

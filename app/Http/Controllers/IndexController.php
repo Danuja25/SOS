@@ -10,9 +10,11 @@ namespace App\Http\Controllers;
 use app\DataBase\DataBase;
 use Illuminate\Support\Facades\Auth;
 use App\Issue;
+use App\IssueVotes;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 
 class IndexController extends Controller
@@ -62,11 +64,13 @@ class IndexController extends Controller
     {
         $user = Auth::user();
         $addedIssues=Issue::all()->where('Submitter',$user->NID);
-        $votes = IssueVotes::all->where('voterID',$user->NID);
-        $votedIssues=Issue::all()->where('Submitter',$user->NID);
+        $votedIssues = IssueVotes::all()->where('voterID',$user->NID);
+        $votes = IssueVotes::Issue()->where('Submitter',$user->NID);
+
 
         return view('UserViews.reqIndex')
             ->with('addedIssues', $addedIssues)
+            ->with('votes', $votes)
             ->with('user', Auth::user());
 
     }

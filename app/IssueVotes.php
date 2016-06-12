@@ -1,12 +1,14 @@
 <?php namespace App;
 
+use App\Issue;
+use App\User;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class Issue extends Model implements AuthenticatableContract, CanResetPasswordContract
+class IssueVotes extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
 
     use Authenticatable, CanResetPassword;
@@ -16,7 +18,7 @@ class Issue extends Model implements AuthenticatableContract, CanResetPasswordCo
      *
      * @var string
      */
-    protected $table = 'issues';
+    protected $table = 'issueVotes';
 
     /**
      * The attributes that are mass assignable.
@@ -35,12 +37,12 @@ class Issue extends Model implements AuthenticatableContract, CanResetPasswordCo
     public $timestamps = false;
     protected $primaryKey = "Issue_No";
 
-    public function User(){
-        return $this->hasOne('App\Requester');
+    public function Issue(){
+        return $this->belongsTo('App\Issue');
     }
 
-    public function Solution(){
-        return $this->hasMany('App\Solutions');
+    public function User(){
+        return $this->belongsTo('App\Users');
     }
 
 }

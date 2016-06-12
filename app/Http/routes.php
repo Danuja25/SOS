@@ -34,8 +34,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('addIssue', 'IssuesController@createIssue');
     Route::get('leaderboard', 'LeaderBoardController@ldrview');
     Route::get('issues', 'IssuesController@issues');
-    Route::get('addSolution/{issue}', array('as' => 'addSolution/{iss}', 'uses' => 'SolutionsController@viewAddSolution'));
+    Route::get('addSolution/{issueNo}', array('as' => 'addSolution', 'uses' => 'SolutionsController@viewAddSolution'));
     Route::post('addSolution', 'SolutionsController@createSolution');
     Route::post('sendIssues/{title}/{location}/{description}/{maploc}', array('as' => 'sendIss', 'uses' => 'addIssueController@addIssue'));
+    Route::get('issDetails/{issueNo}', array('as' => 'issDetails', 'uses' => 'IssuesController@viewIssueDetails'));
 
 });
