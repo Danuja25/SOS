@@ -18,7 +18,7 @@ class IssueVotes extends Model implements AuthenticatableContract, CanResetPassw
      *
      * @var string
      */
-    protected $table = 'issueVotes';
+    protected $table = 'issuevotes';
 
     /**
      * The attributes that are mass assignable.

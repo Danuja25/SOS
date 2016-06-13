@@ -11,8 +11,11 @@ namespace App\Http\Controllers;
 
 use App\DataBase\DataBase;
 use App\Issue;
+use App\image;
+use App\IssueVotes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
@@ -21,7 +24,7 @@ class IssuesController extends controller
 
     public function issues()
     {
-        $issues=Issue::all();
+        $issues = Issue::all();
 
         return view('UserViews.issues')
             ->with('issues', $issues)
@@ -41,7 +44,7 @@ class IssuesController extends controller
 
         return view('UserViews.issueDetails')
             ->with('user', Auth::user())
-            ->with('issue',$viewIssue);
+            ->with('issue', $viewIssue);
     }
 
     public function createIssue(Request $request)
@@ -61,7 +64,7 @@ class IssuesController extends controller
         $nid = $user->NID;
         $issue = new Issue();
         $issue->Title = $request->title;
-        $issue->Submitter= $nid;           ;
+        $issue->Submitter = $nid;;
         $issue->Location = $request->city;
         $issue->Description = $request->description;
         $issue->MapLat = $request->maplat;
@@ -72,6 +75,42 @@ class IssuesController extends controller
 
 
         return redirect()->to('issues')->with('success', 'Issue added successfully. Thank you!!!');
+    }
+
+    /**
+     * @param $issueNo
+     */
+    public function voteIssue($issueNo)
+    {
+        $user = Auth::user();
+        $nid = $user->NID;
+        $issueVote = new IssueVotes();
+        $issueVote->IssueNo = $issueNo;
+        $issueVote->VoterID = $nid;
+        $issueVote->save();
+    }
+
+
+    /**
+     * Toggle vote on a given issue
+     *
+     * @param $issueNo
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function toggleVote($issueNo)
+    {
+        $user = Auth::user();
+        $issue = Issue::find($issueNo);
+        $vote = $issue->votes()->where('VoterID', $user->NID)->first();
+        if (is_null($vote)) {
+            $vote = new IssueVotes();
+            $vote->VoterID = $user->NID;
+            $issue->votes()->save($vote);
+            return response()->json(['status' => 1]);
+        } else {
+            $vote->delete();
+            return response()->json(['status' => 0]);
+        }
     }
 
 }

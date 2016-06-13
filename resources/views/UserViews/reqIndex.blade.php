@@ -140,7 +140,7 @@
         <div class="loc-right">
             <div class="loc-top">
                 <h3>Issues you’ve Add</h3>
-                @foreach($issues as $issue)
+                @foreach($addedIssues as $issue)
                     <div class="blas">
                         <li class="wicked">{{$issue->Title}} </li>
                         <li class="mullet">{{$issue->Location}}</li>
@@ -164,8 +164,9 @@
             </div>
             <div class="loc-top">
                 <h3>Recent issues you've voted</h3>
+                @foreach($votes as $vote)
                 <div class="air">
-                    @foreach($votes as $vote)
+
                     <li class="wicked">{{$vote->Title}}</li>
                     <li class="mullet">{{$vote->Location}}</li>
                     <li class="see"><a href="#">Check location</a></li>

@@ -184,7 +184,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
 
         <div class="contact-details" >
-            <form class="main-1" action="{{route('addIssue')}}" method="POST">
+            <form class="main-1" action="{{route('addIssue')}}" method="POST" enctype="multipart/form-data">
 
                 @if($errors->any())
                     <div class="alert alert-danger">

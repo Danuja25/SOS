@@ -46,4 +46,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function issueVotes(){
         return $this->hasMany('App/IssueVotes');
     }
+
+    public function votes(){
+        return $this->hasMany('App\IssueVotes','Issue_No','Issue_No');
+    }
 }

@@ -32,9 +32,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('reqIndex', array('as' => 'reqIndex', 'uses' => 'IndexController@reqIndex'));
     Route::get('addIssue', array('as' => 'addIssue', 'uses' => 'IssuesController@viewAddIssue'));
     Route::post('addIssue', 'IssuesController@createIssue');
-    Route::get('leaderboard', 'LeaderBoardController@ldrview');
+    Route::post('toggleVote/{issueNo}', 'IssuesController@toggleVote');
+    Route::get('issueVote/{issueNo}', 'IssuesController@voteIssue');
+    Route::get('leaderboard', 'UserController@leaderboard');
     Route::get('issues', 'IssuesController@issues');
-    Route::get('addSolution/{issueNo}', array('as' => 'addSolution', 'uses' => 'SolutionsController@viewAddSolution'));
+    Route::get('solutions/{issueNo}', 'SolutionsController@viewIssueSolution');
+    Route::get('addSolution/{issueNo}', 'SolutionsController@viewAddSolution');
     Route::post('addSolution', 'SolutionsController@createSolution');
     Route::post('sendIssues/{title}/{location}/{description}/{maploc}', array('as' => 'sendIss', 'uses' => 'addIssueController@addIssue'));
     Route::get('issDetails/{issueNo}', array('as' => 'issDetails', 'uses' => 'IssuesController@viewIssueDetails'));
