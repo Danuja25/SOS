@@ -70,7 +70,12 @@ class IssuesController extends controller
         $issue->MapLat = $request->maplat;
         $issue->MapLng = $request->maplng;
         $issue->SubmittedDate = date("y-m-d");
-        $issue->Image = $request->image;
+        if($request->hasFile('image')){
+            $upload = $request->file('image');
+            $upload->move(public_path().'/images/issues',$upload->getClientOriginalName());
+            $issue->Image = $upload->getClientOriginalName();
+        }
+
         $issue->save();
 
 
@@ -101,11 +106,15 @@ class IssuesController extends controller
     {
         $user = Auth::user();
         $issue = Issue::find($issueNo);
+        $No_of_votes = $issue->No_of_votes;
         $vote = $issue->votes()->where('VoterID', $user->NID)->first();
         if (is_null($vote)) {
             $vote = new IssueVotes();
             $vote->VoterID = $user->NID;
             $issue->votes()->save($vote);
+            $No_of_votes += 1;
+            $issue->No_of_votes = $No_of_votes;
+            $issue->save();
             return response()->json(['status' => 1]);
         } else {
             $vote->delete();

@@ -1,101 +1,7 @@
-
-<!DOCTYPE HTML>
-<html>
-<head>
-    <title>S.O.S :: Proposed Soltions</title>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Location Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.easydropdown.js"></script>
-    <!-- Mega Menu -->
-    <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
-    <script type="text/javascript" src="js/megamenu.js"></script>
-    <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
-
-    <!-- Mega Menu -->
-</head>
-<body>
-<!-- banner -->
-<div class="header">
-    <div class="container">
-        <div class="logo">
-            <a href="index.html"><img src="images/logo.png" class="img-responsive" alt=""></a>
-        </div>
-        <div class="header-left">
-            <li a="" href="#"><div class="drop-down">
-                    <select class="d-arrow">
-                        <option value="Eng">Our Network</option>
-                        <option value="Fren">versions</option>
-                        <option value="Russ">variations</option>
-                        <option value="Chin">Internet</option>
-                    </select>
-                </div></li>
-        </div>
-        <div class="clearfix"></div>
-    </div>
-</div>
-<div class="header-bottom">
-    <div class="container">
-        <div class="top-nav">
-            <span class="menu"> </span>
-            <ul class="navig megamenu skyblue">
-                <li><a href="location.html" class="scroll"><span> </span> Find Locations</a>
-                    <div class="megapanel">
-                        <div class="na-left">
-                            <ul class="grid-img-list">
-                                <li><a href="location.html">Find a Location  </a></li> |
-                                <li><a href="addlocation.html">Add a location </a></li> |
-                                <li><a href="location.html"> Review a location  </a></li> |
-                                <li><a href="location.html">Review a location</a></li>
-                                <div class="clearfix"> </div>
-                            </ul>
-                        </div>
-                        <div class="na-right">
-                            <ul class="grid-img-list">
-                                <li><a href="login.html">Login Here or</a></li>
-                                <li class="reg">
-                                    <form action="register.html">
-                                        <input type="submit" value="Register">
-                                    </form>
-                                </li>
-                                <div class="clearfix"> </div>
-                            </ul>
-                        </div>
-                        <div class="clearfix"> </div>
-                    </div>
-                </li>
-                <li><a href="404.html" class="scroll"> <span class="service"> </span>Our Species</a></li>
-                <li><a href="shop.html" class="scroll"><span class="mail"> </span>Shop </a></li>
-                <div class="clearfix"></div>
-            </ul>
-            <script>
-                $("span.menu").click(function(){
-                    $(".top-nav ul").slideToggle(300, function(){
-                    });
-                });
-            </script>
-        </div>
-        <div class="head-right">
-            <ul class="number">
-                <li><a href="login.html"><i class="roc"> </i>My Account</a></li>
-                <li><a href="register.html"><i class="phone"> </i>Sign Up</a></li>
-                <li><a href="contact.html"><i class="mail"> </i>Contact</a></li>
-                <div class="clearfix"> </div>
-            </ul>
-        </div>
-        <div class="clearfix"> </div>
-    </div>
-</div>
-
+@extends('layouts.master')
 
 <!-- contact -->
+@section('content')
 <div class="container">
     <div class="contact-content">
         <div class="contact-info">
@@ -108,19 +14,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="contact-details">
             <form>
                 <h4>Title</h4>
-                <p>{{$issue->Title}}</p>
+                <p>{{$solution->Title}}</p>
                 <p>.                        </p>
                 <h4>Submitter </h4>
-                <p>{{$issue->Submitter}}</p>
+                <p>{{$solution->Submitter}}</p>
                 <p>.                        </p>
-                <h4>City </h4>
-                <p>{{$issue->Location}}</p>
+                <h4>Estimated Cost </h4>
+                <p>{{$solution->EstimatedCost}}</p>
                 <p>.                        </p>
                 <h4>Date of submission </h4>
-                <p>{{$issue->SubmittedDate}}</p>
+                <p>{{$solution->SubmittedDate}}</p>
                 <p>.                        </p>
                 <h4>Description </h4>
-                <p>{{$issue->Description}}</p>
+                <p>{{$solution->Description}}</p>
                 <p>.                        </p>
 
                 <a class="acount-btn" href="register_ph.html">Vote</a>
@@ -188,5 +94,4 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
 </div>
-</body>
-</html>
+@endsection

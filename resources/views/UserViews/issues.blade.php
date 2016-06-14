@@ -10,8 +10,9 @@
                     <div class="col-md-4">
                         <div class="photoday">
                             <input type="hidden" value="{{$issue->Issue_No}}" id="issueNo">
-                            <img src="{{asset($issue->Image?:'images/photo_bg.jpg')}}"
-                                 height="200px" class="img-responsive" alt="">
+                            <img src={{asset("/images/Issues")."/".$issue->Image}}  height="200px" class="img-responsive" alt="">
+                            {{--<img src="{{asset($issue->Image?:'images/photo_bg.jpg')}}"--}}
+                                 {{--height="200px" class="img-responsive" alt="">--}}
 
                             <div class="photo-text">
                                 <h4>{{$issue->Title}}</h4>

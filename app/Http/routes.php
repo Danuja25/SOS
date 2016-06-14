@@ -37,6 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('leaderboard', 'UserController@leaderboard');
     Route::get('issues', 'IssuesController@issues');
     Route::get('solutions/{issueNo}', 'SolutionsController@viewIssueSolution');
+    Route::get('solutionDetails/{solutionNo}', 'SolutionsController@viewSolutionDetails');
     Route::get('addSolution/{issueNo}', 'SolutionsController@viewAddSolution');
     Route::post('addSolution', 'SolutionsController@createSolution');
     Route::post('sendIssues/{title}/{location}/{description}/{maploc}', array('as' => 'sendIss', 'uses' => 'addIssueController@addIssue'));

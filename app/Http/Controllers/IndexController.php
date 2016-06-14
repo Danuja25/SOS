@@ -64,8 +64,8 @@ class IndexController extends Controller
     {
         $user = Auth::user();
         $addedIssues=Issue::all()->where('Submitter',$user->NID);
-        $issue = Issue::all();
-        $votes = $issue->votes()->where('VoterID', $user->NID);
+        $issue = new Issue();
+        $votes = $user->votes();
 
         return view('UserViews.reqIndex')
             ->with('addedIssues', $addedIssues)
