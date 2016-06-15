@@ -5,9 +5,9 @@
         <div class="contact-content">
             <div class="contact-info">
                 <h2>Issue Details</h2>
-
+                {{-- Displaying the position of the issue on the map--}}
                 <div id="googleMap" style="width:1000px;height:300px;"></div>
-                <!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1609927.7974915467!2d144.41768979226285!3d-37.991357413515345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad646b5d2ba4df7%3A0x4045675218ccd90!2sMelbourne+VIC%2C+Australia!5e0!3m2!1sen!2sin!4v1430308946781" width="100%" height="450" frameborder="0" style="border:0"></iframe>-->
+
             </div>
 
             <div class="contact-details">
@@ -37,6 +37,7 @@
 
                 <p>. </p>
 
+                {{--Voting and adding solution for the issue--}}
                 <button class="acount-btn" onclick="toggleVote({{$issue->Issue_No}})" id="voteBtn">
                     {{$issue->hasVote() ? "Cancel Vote":"Vote"}}
                 </button>
@@ -48,22 +49,26 @@
     <script src="http://maps.googleapis.com/maps/api/js"></script>
     <script>
         var map;
-        var myCenter = new google.maps.LatLng(6.79566, 79.8994);
         var markers = [];		// Keeping an array of markers to add to the map
 
         function initialize() {    // setting map properties
+
+            var lat = {{$issue->MapLat}};
+            var lng = {{$issue->MapLng}};
+            var myLatLng = {lat: lat, lng: lng};
+
             var mapProp = {
-                center: myCenter,
+                center: myLatLng,
                 zoom: 15,
                 streetViewControl: false,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
 
             map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-
-            google.maps.event.addListener(map, 'click', function (event) {			// Placing a listener to add a marker on the map when clicked.
-                placeMarker(event.latLng);
-            });
+            placeMarker(myLatLng);
+//            google.maps.event.addListener(map, 'click', function (event) {			// Placing a listener to add a marker on the map when clicked.
+//                placeMarker(event.latLng);
+//            });
         }
 
         // Set markers on the map
@@ -82,12 +87,12 @@
                 label: 'O',
             });
             var infowindow = new google.maps.InfoWindow({			// Setting information windows for each marker
-                content: 'Added by: ' + '' + '<br>Votes: ' + ''
+                content: '' + myCenter
             });
             infowindow.open(map, marker);
-            marker.addListener('click', function () {			// Adding a listener to open the window when marker is clicked
-                infowindow.open(map, marker);
-            });
+//            marker.addListener('click', function () {			// Adding a listener to open the window when marker is clicked
+//                infowindow.open(map, marker);
+//            });
             markers.push(marker);		// Add the marker to the array
         }
 

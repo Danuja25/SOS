@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Validator;
 class IssuesController extends controller
 {
 
-    public function issues()
+    public function issues()            /*Returning the issues view with all the issues*/
     {
         $issues = Issue::all();
 
@@ -32,13 +32,13 @@ class IssuesController extends controller
 
     }
 
-    public function viewAddIssue()
+    public function viewAddIssue()      /*Show add issue page*/
     {
         return view('addIssue')
             ->with('user', Auth::user());
     }
 
-    public function viewIssueDetails($issueNo)
+    public function viewIssueDetails($issueNo)      /*Show issue details page*/
     {
         $viewIssue = Issue::all()->find($issueNo);
 
@@ -47,13 +47,20 @@ class IssuesController extends controller
             ->with('issue', $viewIssue);
     }
 
+    /**
+     * Create new issue
+     *
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
     public function createIssue(Request $request)
     {
         Log::info($request->all());
-        $validator = Validator::make($request->all(), [
-            'title' => 'required',
-            'city' => 'required',
-            'description' => 'required'
+        $validator = Validator::make($request->all(), [        /* Validating the given input*/
+            'title' => 'required|string',
+            'city' => 'required|string',
+            'description' => 'required',
+            'image' => 'image|size:5200'
 
         ]);
         if ($validator->fails()) {
@@ -70,7 +77,7 @@ class IssuesController extends controller
         $issue->MapLat = $request->maplat;
         $issue->MapLng = $request->maplng;
         $issue->SubmittedDate = date("y-m-d");
-        if($request->hasFile('image')){
+        if($request->hasFile('image')){                     /*Image upload to the system*/
             $upload = $request->file('image');
             $upload->move(public_path().'/images/issues',$upload->getClientOriginalName());
             $issue->Image = $upload->getClientOriginalName();
@@ -108,7 +115,7 @@ class IssuesController extends controller
         $issue = Issue::find($issueNo);
         $No_of_votes = $issue->No_of_votes;
         $vote = $issue->votes()->where('VoterID', $user->NID)->first();
-        if (is_null($vote)) {
+        if (is_null($vote)) {                  /* Set status of the vote as positive and increasing the number of votes for the issue*/
             $vote = new IssueVotes();
             $vote->VoterID = $user->NID;
             $issue->votes()->save($vote);
@@ -117,9 +124,20 @@ class IssuesController extends controller
             $issue->save();
             return response()->json(['status' => 1]);
         } else {
-            $vote->delete();
+            $vote->delete();            /*Set the voted status for the issue as negative and reduce the number of votes for the issue*/
+            $No_of_votes -= 1;
+            $issue->No_of_votes = $No_of_votes;
+            $issue->save();
             return response()->json(['status' => 0]);
         }
     }
 
+    public function increaseVote($No_of_votes){     /*Increase vote count*/
+        $No_of_votes += 1;
+
+    }
+
+    public function decreaseVote($No_of_votes){    /* Decrease vote count*/
+        $No_of_votes -= 1;
+    }
 }

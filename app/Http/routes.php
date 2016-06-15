@@ -13,6 +13,7 @@
 Route::get('login', 'IndexController@login');
 Route::post('login', ['as' => 'login', 'uses' => 'Auth\AuthController@postLogin']);
 Route::get('logout','Auth\AuthController@getLogout');
+Route::get('contact', array('as' => 'contact', 'uses' => 'IndexController@contact'));
 
 Route::get('register', array('as' => 'registerUser', 'uses' => 'UserController@viewRegister'));
 Route::post('register', array('as' => 'registerUser', 'uses' => 'UserController@create'));
@@ -20,6 +21,8 @@ Route::get('registerReq', array('as' => 'registerReq', 'uses' => 'UserController
 Route::post('registerReq', array('as' => 'registerReq', 'uses' => 'UserController@createRequester'));
 Route::get('registerPh', array('as' => 'registerPh', 'uses' => 'UserController@viewPhilanthropistReg'));
 Route::post('registerPh', array('as' => 'registerPh', 'uses' => 'UserController@createPhilanthropist'));
+Route::get('registerAdmin', array('as' => 'registerAdmin', 'uses' => 'UserController@viewAdminReg'));
+Route::post('registerAdmin', array('as' => 'registerAdmin', 'uses' => 'UserController@createAdmin'));
 Route::get('/', function () {
     if (\Illuminate\Support\Facades\Auth::check()) {
         return redirect()->to('home');
@@ -29,10 +32,12 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('home', array('as' => 'home', 'uses' => 'UserController@home'));
+    Route::get('users', array('as' => 'users', 'uses' => 'UserController@allUsers'));
     Route::get('reqIndex', array('as' => 'reqIndex', 'uses' => 'IndexController@reqIndex'));
     Route::get('addIssue', array('as' => 'addIssue', 'uses' => 'IssuesController@viewAddIssue'));
     Route::post('addIssue', 'IssuesController@createIssue');
     Route::post('toggleVote/{issueNo}', 'IssuesController@toggleVote');
+    Route::post('toggleSolVote/{solutionNo}', 'SolutionsController@toggleVote');
     Route::get('issueVote/{issueNo}', 'IssuesController@voteIssue');
     Route::get('leaderboard', 'UserController@leaderboard');
     Route::get('issues', 'IssuesController@issues');

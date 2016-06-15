@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - mydb@localhost" uuid="e7efb05b-575e-4e12-960c-65462ad55933">
+    <database-info product="MySQL" version="5.5.27" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="mydb"/>
+    <table name="admin" schema="" catalog="mydb" type="TABLE">
+      <column name="User_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Name" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="NID" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Username" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="User_ID"/>
+    </table>
+    <table name="issues" schema="" catalog="mydb" type="TABLE">
+      <column name="Issue_No" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Title" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Submitter" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Location" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Description" sqlType="VARCHAR" precision="1000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MapLat" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="MapLng" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SubmittedDate" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="No_of_votes" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="Image" sqlType="VARCHAR" precision="300" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="Issue_No"/>
+      <foreign-key name="Requester" columns="Submitter" ref-table="requester" ref-schema="" ref-catalog="mydb" ref-columns="NID" update-rule="0" delete-rule="0" deferrability="2"/>
+      <exported-key name="issuevotes_ibfk_1" table="issuevotes" schema="" catalog="mydb" columns="Issue_No"/>
+      <exported-key name="Issue" table="solutions" schema="" catalog="mydb" columns="Issue_No"/>
+      <index name="Issue_No_UNIQUE" unique="true" columns="Issue_No"/>
+      <index name="Requester_idx" unique="false" columns="Submitter"/>
+    </table>
+    <table name="issuevotes" schema="" catalog="mydb" type="TABLE">
+      <column name="Issue_No" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="VoterID" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="Issue_No"/>
+      <foreign-key name="issuevotes_ibfk_1" columns="Issue_No" ref-table="issues" ref-schema="" ref-catalog="mydb" ref-columns="Issue_No" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="nid" columns="VoterID" ref-table="user" ref-schema="" ref-catalog="mydb" ref-columns="NID" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="nid_idx" unique="false" columns="VoterID"/>
+    </table>
+    <table name="messages" schema="" catalog="mydb" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Name" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Email" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Phone" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="City" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Message" sqlType="VARCHAR" precision="2000" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+    </table>
+    <table name="philanthropist" schema="" catalog="mydb" type="TABLE">
+      <column name="FirstName" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LastName" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="NID" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ContactNo" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="Occupation" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Place_of_Work" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="City" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Username" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SolvedIssues" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="Points" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="User_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="User_ID"/>
+      <foreign-key name="fk_Philanthropist_User1" columns="User_ID" ref-table="user" ref-schema="" ref-catalog="mydb" ref-columns="ID" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="phil_NID" columns="NID" ref-table="user" ref-schema="" ref-catalog="mydb" ref-columns="NID" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="phil_Username" columns="Username" ref-table="user" ref-schema="" ref-catalog="mydb" ref-columns="Username" update-rule="0" delete-rule="0" deferrability="2"/>
+      <exported-key name="Submitter" table="solutions" schema="" catalog="mydb" columns="Submitter"/>
+      <index name="fk_Philanthropist_User1_idx" unique="false" columns="User_ID"/>
+      <index name="phil_NID" unique="false" columns="NID"/>
+      <index name="Username_idx" unique="false" columns="Username"/>
+    </table>
+    <table name="requester" schema="" catalog="mydb" type="TABLE">
+      <column name="FirstName" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LastName" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="NID" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ContactNo" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="Address" sqlType="VARCHAR" precision="500" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Username" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="No_of_requests" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="User_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="User_ID"/>
+      <foreign-key name="fk_Requester_User1" columns="User_ID" ref-table="user" ref-schema="" ref-catalog="mydb" ref-columns="ID" update-rule="0" delete-rule="0" deferrability="2"/>
+      <exported-key name="Requester" table="issues" schema="" catalog="mydb" columns="Submitter"/>
+      <index name="NID_UNIQUE" unique="true" columns="NID"/>
+    </table>
+    <table name="solutions" schema="" catalog="mydb" type="TABLE">
+      <column name="Solution_No" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Issue_No" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="Title" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Submitter" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="SubmittedDate" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="Description" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="EstimatedCost" sqlType="DECIMAL" precision="15" scale="2" nullable="true" jdbcType="3"/>
+      <column name="No_of_votes" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="Image" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="Solution_No"/>
+      <foreign-key name="Issue" columns="Issue_No" ref-table="issues" ref-schema="" ref-catalog="mydb" ref-columns="Issue_No" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="Submitter" columns="Submitter" ref-table="philanthropist" ref-schema="" ref-catalog="mydb" ref-columns="NID" update-rule="0" delete-rule="0" deferrability="2"/>
+      <exported-key name="solutionvotes_ibfk_1" table="solutionvotes" schema="" catalog="mydb" columns="SolutionID"/>
+      <index name="Issue_idx" unique="false" columns="Issue_No"/>
+      <index name="Submitter_idx" unique="false" columns="Submitter"/>
+    </table>
+    <table name="solutionvotes" schema="" catalog="mydb" type="TABLE">
+      <column name="SolutionID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="VoterID" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="SolutionID"/>
+      <foreign-key name="solutionvotes_ibfk_1" columns="SolutionID" ref-table="solutions" ref-schema="" ref-catalog="mydb" ref-columns="Solution_No" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="sol_nid" columns="VoterID" ref-table="user" ref-schema="" ref-catalog="mydb" ref-columns="NID" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="nid_idx" unique="false" columns="VoterID"/>
+    </table>
+    <table name="user" schema="" catalog="mydb" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="NID" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Role" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Username" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Password" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="remember_token" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID,NID,Username"/>
+      <exported-key name="nid" table="issuevotes" schema="" catalog="mydb" columns="VoterID"/>
+      <exported-key name="fk_Philanthropist_User1" table="philanthropist" schema="" catalog="mydb" columns="User_ID"/>
+      <exported-key name="phil_NID" table="philanthropist" schema="" catalog="mydb" columns="NID"/>
+      <exported-key name="phil_Username" table="philanthropist" schema="" catalog="mydb" columns="Username"/>
+      <exported-key name="fk_Requester_User1" table="requester" schema="" catalog="mydb" columns="User_ID"/>
+      <exported-key name="sol_nid" table="solutionvotes" schema="" catalog="mydb" columns="VoterID"/>
+      <index name="NID_UNIQUE" unique="true" columns="NID"/>
+      <index name="Username_UNIQUE" unique="true" columns="Username"/>
+    </table>
+  </data-source>
+</component>

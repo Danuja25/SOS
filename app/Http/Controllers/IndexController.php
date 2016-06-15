@@ -37,27 +37,8 @@ class IndexController extends Controller
         return view('projectViews.register');
     }
 
-
-    public function checkUser($username,$password){
-        $users = DB::select('SELECT * FROM User WHERE Username = ? AND Password = ?',[$username,$password]);
-        if(count($users)<=0)
-            return false;
-        return true;
-    }
-
-    /*public function getMarkers($location){
-        $places = DB::select('SELECT MapLocation FROM Issues WHERE MapLocation')
-
-    }*/
-
-    public function getUserAddedIssues($nid){
-        $userIssues = DB::select('SELECT Title,Location,MapLocation,No_of_votes FROM Issues WHERE Submitter = ? ORDER BY SubmittedDate DESC ', [$nid]);
-        return $userIssues;
-    }
-
-    public function getUserVotedIssues($nid){
-        $userVotes = DB::select('SELECT Title,Location,MapLocation,No_of_votes FROM IssueVotes NATURAL JOIN Issues WHERE VoterID = ? ORDER BY SubmittedDate DESC', [$nid]);
-        return $userVotes;
+    public function contact(){
+        return view('UserViews.contact');
     }
 
     public function reqIndex()
